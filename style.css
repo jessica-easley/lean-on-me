@@ -12,13 +12,14 @@ background-color: azure;
 .support{
     padding: 2%;
     display: flex;
+    flex-direction: column;
 }
 
-#map {
+.googleMap{
     height: 100%;
   }
 
-html, body {
+  html, body {
     height: 100%;
     margin: 0;
     padding: 0;
