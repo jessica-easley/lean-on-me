@@ -24,6 +24,12 @@ header{
      float: left;
  }
 
+ .contact{
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
 .support{
     padding: 2%;
     display: flex;
