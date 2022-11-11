@@ -126,3 +126,23 @@ header{
     background-color: #038354;
     color: white;
   }
+
+  /* Style the input elements and the submit button */
+input[type=text], input[type=submit] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  /* Add margins to the checkbox */
+  input[type=checkbox] {
+    margin-top: 16px;
+  }
+  /* Style the submit button */
+  input[type=submit] {
+    background-color: rgb(5, 54, 17) ;
+    color: white;
+    border: none;
+  }
