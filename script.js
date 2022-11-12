@@ -1,12 +1,16 @@
+var submissionResponseEl = document.querySelector("response");
+var submitEl = document.querySelector("submit");
+
 let map;
 let infoWindow;
 let currentPosition = { lat: 32.8203525, lng: -97.0117411 };
 
 function addMarker(position, type) {
-    console.log("ICON OPTIONS:", google.maps.SymbolPath)
-  let iconUrl = type === 'home' 
-    ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-    : "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+  console.log("ICON OPTIONS:", google.maps.SymbolPath);
+  let iconUrl =
+    type === "home"
+      ? "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+      : "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
 
   const marker = new google.maps.Marker({
     position: position,
@@ -20,13 +24,13 @@ function addMarker(position, type) {
 }
 
 function addPlaceMarker(place) {
-    console.log("LOCATION", place.geometry.location);
-    const marker = addMarker(place.geometry.location);
+  console.log("LOCATION", place.geometry.location);
+  const marker = addMarker(place.geometry.location);
 
-    google.maps.event.addListener(marker, "click", function () {
-        infoWindow.setContent(place.name);
-        infoWindow.open(map, this);
-    });
+  google.maps.event.addListener(marker, "click", function () {
+    infoWindow.setContent(place.name);
+    infoWindow.open(map, this);
+  });
 }
 
 function initMap() {
@@ -46,31 +50,31 @@ function geoFindMe() {
     const longitude = position.coords.longitude;
 
     currentPosition = new google.maps.LatLng(latitude, longitude);
-    addMarker(currentPosition, 'home');
+    addMarker(currentPosition, "home");
     map.panTo(currentPosition);
     console.log("POSITION:", currentPosition);
 
     // get search results for current area (geolocation)
     var request = {
-        location: currentPosition,
-        radius: 200,
-        types: ["hospital", "health"], // this is where you set the map to get the hospitals and health related places
-      };
-    
-      infoWindow = new google.maps.InfoWindow();
-      var service = new google.maps.places.PlacesService(map);
-      console.log('PLACES SERVICE', service);
+      location: currentPosition,
+      radius: 200,
+      types: ["hospital", "health"], // this is where you set the map to get the hospitals and health related places
+    };
+
+    infoWindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(map);
+    console.log("PLACES SERVICE", service);
     //   service.nearbySearch(request, callback);
-      service.textSearch(request, (results, status) => {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-            // get closest (results are ordered by proximity)
-            // addPlaceMarker(results[0]);
-            for (var i = 0; i < results.length; i++) {
-                addPlaceMarker(results[i]);
-                console.log("RESULT:", results[i]);
-            }
-          }
-      })
+    service.textSearch(request, (results, status) => {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        // get closest (results are ordered by proximity)
+        // addPlaceMarker(results[0]);
+        for (var i = 0; i < results.length; i++) {
+          addPlaceMarker(results[i]);
+          console.log("RESULT:", results[i]);
+        }
+      }
+    });
   }
 
   function error() {
@@ -97,3 +101,15 @@ function geoFindMe() {
 
 // google.maps.event.addDomListener(window, "load", initialize);
 window.initMap = initMap;
+
+function showResponse(event) {
+  // Prevent default action
+  event.preventDefault();
+  console.log(event);
+  var response =
+    "Thank you for your submission! We will reach out to you shortly.";
+  submissionResponseEl.textContent = response;
+}
+
+// Add listener to submit element
+submitEl.addEventListener("click", showResponse);

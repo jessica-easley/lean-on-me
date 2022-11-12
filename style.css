@@ -146,3 +146,7 @@ input[type=text], input[type=submit] {
     color: white;
     border: none;
   }
+
+  #response {
+    padding-bottom: 30px;
+}
