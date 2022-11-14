@@ -1,30 +1,30 @@
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
-
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
+const popup = document.querySelector('.chat-popup');
+const chatBtn = document.querySelector('.chat-btn');
+const submitBtn = document.querySelector('.submit');
+const chatArea = document.querySelector('.chat-area');
+const inputElm = document.querySelector('input');
+const emojiBtn = document.querySelector('#emoji-btn');
+const picker = new EmojiButton();
+// Emoji selection 
+window.addEventListener('DOMContentLoaded', () => {
+    picker.on('emoji', emoji => {
+      document.querySelector('input').value += emoji;
+    });
+    emojiBtn.addEventListener('click', () => {
+      picker.togglePicker(emojiBtn);
+    });
   });
-}
-
-function myFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("mySearch");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myMenu");
-  li = ul.getElementsByTagName("li");
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
+//   chat button toggler
+chatBtn.addEventListener('click', ()=>{
+    popup.classList.toggle('show');
+})
+// send msg
+submitBtn.addEventListener('click', ()=>{
+    let userInput = inputElm.value;
+    let temp = `<div class="out-msg">
+    <span class="my-msg">${userInput}</span>
+    <img src="img/me.jpg" class="avatar">
+    </div>`;
+    chatArea.insertAdjacentHTML("beforeend", temp);
+    inputElm.value = '';
+})
