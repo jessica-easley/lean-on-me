@@ -113,3 +113,20 @@ function showResponse(event) {
 
 // Add listener to submit element
 submitEl.addEventListener("click", showResponse);
+
+// US Doctors & Medical Professionals API
+
+const searchBar = document.getElementById('searchBar');
+
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '997b22db41mshdc6ae692609579bp11b2c3jsnd6daad2e662c',
+		'X-RapidAPI-Host': 'us-doctors-and-medical-professionals.p.rapidapi.com'
+	}
+};
+
+fetch('https://us-doctors-and-medical-professionals.p.rapidapi.com/search_npi?npi=1033112214', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
