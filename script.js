@@ -102,6 +102,7 @@ function geoFindMe() {
 // google.maps.event.addDomListener(window, "load", initialize);
 window.initMap = initMap;
 
+// Form Submission & Response
 function showResponse(event) {
   // Prevent default action
   event.preventDefault();
