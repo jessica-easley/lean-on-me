@@ -1,5 +1,5 @@
 var submissionResponseEl = document.querySelector("response");
-var submitEl = document.querySelector("submit");
+var submitEl = document.querySelector("button.submit");
 
 // code for google maps
 let map;
@@ -30,11 +30,9 @@ function addPlaceMarker(place) {
   });
 }
 
-
 function initMap() {
   geoFindMe();
   currentPosition = new google.maps.LatLng(32.8203525, -97.0117411);
-
 
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
@@ -105,17 +103,52 @@ submitEl.addEventListener("click", showResponse);
 
 // US Doctors & Medical Professionals API
 
-const searchBar = document.getElementById('searchBar');
+const searchBar = document.getElementById("searchBar");
 
 const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '997b22db41mshdc6ae692609579bp11b2c3jsnd6daad2e662c',
-		'X-RapidAPI-Host': 'us-doctors-and-medical-professionals.p.rapidapi.com'
-	}
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "997b22db41mshdc6ae692609579bp11b2c3jsnd6daad2e662c",
+    "X-RapidAPI-Host": "us-doctors-and-medical-professionals.p.rapidapi.com",
+  },
 };
 
-fetch('https://us-doctors-and-medical-professionals.p.rapidapi.com/search_npi?npi=1033112214', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
+fetch(
+  "https://us-doctors-and-medical-professionals.p.rapidapi.com/search_npi?npi=1033112214",
+  options
+)
+  .then((response) => response.json())
+  .then((response) => console.log(response))
+  .catch((err) => console.error(err));
+
+// CHAT STUFF
+const popup = document.querySelector(".chat-popup");
+const chatBtn = document.querySelector(".chat-btn");
+const submitBtn = document.querySelector(".submit");
+const chatArea = document.querySelector(".chat-area");
+const inputElm = document.querySelector("input");
+const emojiBtn = document.querySelector("#emoji-btn");
+const picker = new EmojiButton();
+// Emoji selection
+window.addEventListener("DOMContentLoaded", () => {
+  picker.on("emoji", (emoji) => {
+    document.querySelector("input").value += emoji;
+  });
+  emojiBtn.addEventListener("click", () => {
+    picker.togglePicker(emojiBtn);
+  });
+});
+//   chat button toggler
+chatBtn.addEventListener("click", () => {
+  popup.classList.toggle("show");
+});
+// send msg
+submitBtn.addEventListener("click", () => {
+  let userInput = inputElm.value;
+  let temp = `<div class="out-msg">
+    <span class="my-msg">${userInput}</span>
+    <img src="img/me.jpg" class="avatar">
+    </div>`;
+  chatArea.insertAdjacentHTML("beforeend", temp);
+  inputElm.value = "";
+});
