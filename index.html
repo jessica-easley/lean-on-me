@@ -46,7 +46,7 @@
         id="searchBar"
         placeholder="Find Medical Professionals..." />
         <button type="button">
-          <i class="idk idk-searchbutton">🔍</i>
+          <i id="docSearchBtn">🔍</i>
         </button>
       </nav>
     </header>
@@ -129,7 +129,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-6">
           <div class="card">
             <div class="contact">
               <h5 class="card-title">Contact Us</h5>
@@ -200,12 +200,6 @@
               <br />
               <h6>Find Your Nearest Health Center</h6>
               <div id="map" style="width: 100%; height: 400px"></div>
-              <script src="./script.js"></script>
-              <script src="./script2.js"></script>
-              <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyk5T-Vj11EzvLdAQGK9W9XW6HN6s-h8A&callback=initMap&libraries=places"
-                defer
-              ></script>
               <br />
               <hr />
               <button class="button hotline">
@@ -214,7 +208,63 @@
                 >
               </button>
             </div>
-          </div>
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Contact Us</h5>
+                  <p class="card-text">
+                    Have any questions or comments? We're here for you! Contact us
+                    with the form below and a member of our team will get back to
+                    you shortly.
+                  </p>
+                </div>
+              </div>
+              <div class="form-container">
+                <form action="action_page.php">
+                  <div class="row">
+                    <div class="col-25">
+                      <label for="email">Email Address</label>
+                    </div>
+                    <div class="col-75">
+                      <input type="text" id="emailaddress" name="emailaddress" placeholder="Your email address..">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-25">
+                      <label for="phone">Phone Number</label>
+                    </div>
+                    <div class="col-75">
+                      <input type="text" id="phone" name="phonenumber" placeholder="Your phone number..">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-25">
+                      <label for="topic">Topic</label>
+                    </div>
+                    <div class="col-75">
+                      <select id="topic" name="topic">
+                        <option value="General Questions or Concerns">General Questions or Concerns</option>
+                        <option value="Anxiety/Depression">Anxiety/Depression</option>
+                        <option value="Veteras">Veterans</option>
+                        <option value="PTSD">PTSD</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-25">
+                      <label for="subject">Subject</label>
+                    </div>
+                    <div class="col-75">
+                      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <input type="submit" value="Submit">
+                  </div>
+                </form>
+              </div> 
+            </div>
+          </div>   
         </div>
     </main>
     <footer class="width-100%">
@@ -222,5 +272,12 @@
         © 2022 CodeNinjas, Inc.
       </p>
     </footer>
+    <script src="./script.js"></script>
+    <script src="./script2.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyk5T-Vj11EzvLdAQGK9W9XW6HN6s-h8A&callback=initMap&libraries=places"
+      defer
+    ></script>
+    <script src='./fetch.js'></script>
   </body>
 </html>

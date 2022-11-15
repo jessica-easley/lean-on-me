@@ -1,6 +1,7 @@
 var submissionResponseEl = document.querySelector("response");
 var submitEl = document.querySelector("submit");
 
+// code for google maps
 let map;
 let infoWindow;
 let currentPosition = { lat: 32.8203525, lng: -97.0117411 };
@@ -15,11 +16,7 @@ function addMarker(position, type) {
   const marker = new google.maps.Marker({
     position: position,
     map: map,
-    // icon: {
-    //     // url: iconUrl
-    // }
   });
-
   return marker;
 }
 
@@ -33,10 +30,11 @@ function addPlaceMarker(place) {
   });
 }
 
+
 function initMap() {
   geoFindMe();
-
   currentPosition = new google.maps.LatLng(32.8203525, -97.0117411);
+
 
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
@@ -90,16 +88,6 @@ function geoFindMe() {
   }
 }
 
-// function callback(results, status) {
-//   console.log('PLACES API CALLBACK', status);
-//   if (status == google.maps.places.PlacesServiceStatus.OK) {
-//     for (var i = 0; i < results.length; i++) {
-//         addMarker(results[i]);
-//     }
-//   }
-// }
-
-// google.maps.event.addDomListener(window, "load", initialize);
 window.initMap = initMap;
 
 // Form Submission & Response
